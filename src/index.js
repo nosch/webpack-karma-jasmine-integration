@@ -1,3 +1,5 @@
+require('babel-core/polyfill');
+
 var $ = require('jquery');
 var ok = require('./modules/one');
 var notOk = require('./modules/two');
@@ -10,11 +12,10 @@ $(function() {
 
 // Async test
 require('./modules/user');
-var eventType = 'loadUserData';
 var dispatcher = require('./services/dispatcher');
 
-dispatcher.on(eventType, function (event) {
-    console.log(event);
+dispatcher.onLoadUserData(function (payload) {
+    console.log(payload);
 });
 
 
